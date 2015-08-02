@@ -120,6 +120,10 @@ public class TicTacToe
 	}
 	public static void main(String[] args)
 	{
+		//update 20150802
+		System.out.println("//update 20150802");
+		System.out.println();
+		
 		displayTable();// display---------------
 		System.out.println();
 						   
