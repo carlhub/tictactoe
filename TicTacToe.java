@@ -1,9 +1,8 @@
 /*
 //Carlos O
-//June 2014
 //created with Java
 //in My Room
-//last seen: 6/1/15
+rev. 2017
 */
 
 /* test for no winners
