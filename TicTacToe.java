@@ -40,11 +40,14 @@ import javax.swing.*;
 import java.util.*;
 public class TicTacToe
 {
+	private static Scanner keyboard = new Scanner(System.in);
 	private static boolean outcome = false;
+	private static boolean FLAG_QUIT = false;
+	private static char[][] arrayTable = new char[3][3];
 	private static char currentPlayer = 'O';
 	private static int count_game_moves = 0;
-	private static char[][] arrayTable = new char[3][3];
-	private static Scanner keyboard = new Scanner(System.in);
+	private static int userChoice=0;//;
+	private final static int FLAG = -999;
 
 	
 	public static void displayTable(){
@@ -120,10 +123,12 @@ public class TicTacToe
 	}
 	public static void main(String[] args)
 	{
+                int x;// 1
+                int y;//tracts 1
 		displayTable();// display---------------
 		System.out.println();
 						   
-		while(count_game_moves < 9){
+		while(count_game_moves < 9 && !FLAG_QUIT){
 			if(currentPlayer == 'X'){
 				currentPlayer = 'O';
 			}
@@ -132,11 +137,23 @@ public class TicTacToe
                         
 			boolean occupied = false;//value in table is empty//Error CHECK!
 			do{//while occupied is false
-                            System.out.println("\nCurrent player is: " + currentPlayer + "    Make your move--->");// (row,column):  ");
+                            System.out.println("\nCurrent player is: " + currentPlayer + "    Make your move. (EXIT: -999)--->");// (row,column):  ");
                             System.out.println();
 
                             System.out.print("\tRow (choose 1-3)   :  ");//enter row
-                            int x = keyboard.nextInt() - 1;//subtracts 1
+
+				/*input*/
+                            userChoice = keyboard.nextInt();// - 1;//subtracts 1
+				if(userChoice==FLAG)
+				{
+					FLAG_QUIT=true;
+					break;
+				}
+				else{
+					x=userChoice-1;
+				}
+
+                            //int x = keyboard.nextInt() - 1;//subtracts 1
 							/*make sure input is valid*/
 							while(x<0 || x>2){
 								System.out.print(" *Re-enter Row:    ");
@@ -144,7 +161,19 @@ public class TicTacToe
 							}
 							
                             System.out.print("\tColumn (choose 1-3):  ");//enter column
-                            int y = keyboard.nextInt() - 1;//subtracts 1
+				/*input*/
+                            userChoice = keyboard.nextInt();// - 1;//subtracts 1
+				if(userChoice==FLAG)
+				{
+					FLAG_QUIT=true;
+					break;
+				}
+				else{
+					y=userChoice-1;
+				}
+
+
+                            //y = keyboard.nextInt() - 1;//subtracts 1
 							/*make sure input is valid*/
 							while(y<0 || y>2){
 								System.out.print(" *Re-enter Column:    ");
@@ -170,6 +199,7 @@ public class TicTacToe
 			if(count_game_moves==9)
 				play_again();//play another game?
 		}//end of while loop
+		System.out.println("\nEnd Program.\n");
 		//
 		
 	}
@@ -196,6 +226,7 @@ public class TicTacToe
 		}
 		else{
 			count_game_moves = 9;//if no fill up game count
+			System.out.print("\n[void play_again()]::Exit Game.  ");
 			System.exit(0);//
 		}
 	}
